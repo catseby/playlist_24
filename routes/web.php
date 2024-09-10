@@ -8,7 +8,8 @@ Route::get('/', function () {
 });
 
 
-Route::resource('playlist', PlaylistController::class);
+Route::resource('playlists', PlaylistController::class);
+Route::resource('songs', PlaylistController::class);
 
 
 Route::get('/dashboard', function () {

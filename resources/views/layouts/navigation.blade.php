@@ -17,7 +17,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('playlist.index')" :active="request()->routeIs('playlist.*')">
+                    <x-nav-link :href="route('playlists.index')" :active="request()->routeIs('playlists.*')">
                         {{ __('Playlists') }}
                     </x-nav-link>
                 </div>

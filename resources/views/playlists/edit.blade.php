@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container mx-auto max-w-lg mt-10 p-6 bg-white shadow-md rounded-lg">
         <h1 class="text-2xl font-bold mb-6 text-center">Edit Playlist</h1>
-        <form action="{{ route('playlist.update', $playlist->id) }}" method="POST" class="space-y-4">
+        <form action="{{ route('playlists.update', $playlist->id) }}" method="POST" class="space-y-4">
             @csrf
             @method('PUT')
 

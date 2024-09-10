@@ -13,7 +13,7 @@ class PlaylistController extends Controller
     public function index()
     {
         $playlists = Playlist::all();
-        return view('playlist.index', compact('playlists'));
+        return view('playlists.index', compact('playlists'));
     }
 
     /**
@@ -21,7 +21,7 @@ class PlaylistController extends Controller
      */
     public function create()
     {
-       return view('playlist.create');
+       return view('playlists.create');
     }
 
     /**
@@ -39,7 +39,7 @@ class PlaylistController extends Controller
             'tag' => $request->input('tag')
         ]);
 
-        return redirect('/playlist')->with('success', 'Playlist created successfully!');
+        return redirect('/playlists')->with('success', 'Playlist created successfully!');
     }
 
     /**
@@ -47,7 +47,7 @@ class PlaylistController extends Controller
      */
     public function show(Playlist $playlist)
     {
-        return view('playlist.show', ['playlist' => $playlist]);
+        return view('playlists.show', ['playlist' => $playlist]);
     }
 
     /**
@@ -59,7 +59,7 @@ class PlaylistController extends Controller
     $playlist = Playlist::findOrFail($id);
     
     // Pass the playlist to the view
-    return view('playlist.edit', ['playlist' => $playlist]);
+    return view('playlists.edit', ['playlist' => $playlist]);
     }
 
     /**
@@ -81,7 +81,7 @@ class PlaylistController extends Controller
     ]);
 
     // Redirect back to the playlists index page
-    return redirect()->route('playlist.index')->with('success', 'Playlist updated successfully!');
+    return redirect()->route('playlists.index')->with('success', 'Playlist updated successfully!');
 }
 
     /**
@@ -92,6 +92,6 @@ class PlaylistController extends Controller
 
         $playlist->delete();
 
-        return redirect('/playlist')->with('success', 'Playlist deleted successfully!');
+        return redirect('/playlists')->with('success', 'Playlist deleted successfully!');
     }
 }
