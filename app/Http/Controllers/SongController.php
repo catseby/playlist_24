@@ -20,7 +20,7 @@ class SongController extends Controller
      */
     public function create()
     {
-       return view('playlist.create');
+       return view('songs.create');
     }
 
     /**
@@ -40,7 +40,7 @@ class SongController extends Controller
             'genre' => $request->input('genre')
         ]);
 
-        return redirect('/playlist'); //--------------Šo vajadzēs samainīt!!!!!!
+        return redirect('/songs')->with('success', 'Song created successfully!');
     }
 
     /**
@@ -92,6 +92,6 @@ class SongController extends Controller
 
         $song->delete();
 
-        return redirect('/playlist'); //--------------Šo vajadzēs samainīt!!!!!!
+        return redirect('/songs')->with('success', 'Song deleted successfully!');
     }
 }
