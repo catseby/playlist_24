@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Song;
+use App\Models\Playlist;
+
 
 
 class SongController extends Controller
@@ -34,7 +36,7 @@ class SongController extends Controller
             'genre' => 'required'
         ]);
 
-        Song::create([
+        $song = Song::create([
             'title' => $request->input('title'),
             'artist' => $request->input('artist'),
             'genre' => $request->input('genre')
@@ -43,12 +45,19 @@ class SongController extends Controller
         return redirect('/songs')->with('success', 'Song created successfully!');
     }
 
+    public function connect(Request $request)
+    {
+
+    }
+
     /**
      * Display the specified resource.
      */
     public function show(Song $song)
     {
-        return view('songs.show', ['song' => $song]);
+        $playlists = Playlist::all();
+
+        return view('songs.show', ['song' => $song], compact('playlists'));
     }
 
     /**

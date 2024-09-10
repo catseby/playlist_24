@@ -47,7 +47,7 @@
             height: 15px;
         }
     </style>
-
+    
     <div class="flex justify-end mb-4">
         <a href="{{ route('songs.create') }}" class="button">
             <div class="button-overlay"></div>
@@ -89,5 +89,15 @@
                     </form>
                 </div>
             </div>
+            <form action="songs.connect">
+                <label for="playlists">Add to a playlist:</label>
+                    <select name="playlists" id="playlists">
+                        @foreach ($playlists as $playlist)
+                            <option value="{{ $playlist->id }}">{{ $playlist->name }}</option>
+                        @endforeach
+                    </select>
+                <br><br>
+                <input type="submit" value="Add">
+            </form>
         </div>
 </x-app-layout>
