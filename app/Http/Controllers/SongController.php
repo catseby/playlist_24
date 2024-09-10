@@ -46,9 +46,9 @@ class SongController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Song $song)
     {
-       return view('playlist.show');
+        return view('songs.show', ['song' => $song]);
     }
 
     /**
