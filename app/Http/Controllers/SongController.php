@@ -56,7 +56,10 @@ class SongController extends Controller
      */
     public function edit($id)
     {
-        
+        $song = Song::findOrFail($id);
+    
+        // Pass the playlist to the view
+        return view('songs.edit', ['song' => $song]);
     }
 
     /**
@@ -69,18 +72,17 @@ class SongController extends Controller
             'artist' => 'required',
             'genre' => 'required'
         ]);
-
-        
-        if ($request->user()->id == auth()->user()->id) {
-            Song::where('id', $id)
-                ->update([
-                    'title' => $request->input('title'),
-                    'artist' => $request->input('artist'),
-                    'genre' => $request->input('genre')
+    
+        // Find the playlist and update its attributes
+        $song = Song::findOrFail($id);
+        $song->update([
+            'title' => $request->input('title'),
+            'artist' => $request->input('artist'),
+            'genre' => $request->input('genre')
         ]);
-    }
-
-    return redirect('/playlist'); //--------------Šo vajadzēs samainīt!!!!!!
+    
+        // Redirect back to the playlists index page
+        return redirect()->route('songs.index')->with('success', 'Song updated successfully!');
     }
 
     /**
