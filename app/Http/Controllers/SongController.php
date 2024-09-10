@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Song;
+
 
 class SongController extends Controller
 {
     
     public function index()
     {
-        //$playlists = Playlist::all();
-        return view('songs.index');//, compact('playlists'));
+        $songs = Song::all();
+        return view('songs.index', compact('songs'));
     }
 
     /**
