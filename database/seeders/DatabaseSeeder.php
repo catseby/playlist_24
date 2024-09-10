@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         ]);
         
         $this->call(PlaylistSeeder::class);
+        $this->call(SongSeeder::class);
+
 
 
     }
