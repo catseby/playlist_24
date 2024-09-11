@@ -12,6 +12,8 @@ Route::get('/', function () {
 Route::resource('playlists', PlaylistController::class);
 Route::resource('songs', SongController::class);
 
+Route::post('songs/{song}', [SongController::class, 'add'])->name('songs.add');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

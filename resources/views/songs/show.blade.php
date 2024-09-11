@@ -89,11 +89,13 @@
                     </form>
                 </div>
             </div>
-            <form action="songs.connect">
+            <form action="{{ route('songs.add', $song->id) }}" method="POST">
+                @csrf
+
                 <label for="playlists">Add to a playlist:</label>
-                    <select name="playlists" id="playlists">
+                    <select name="type" id="type">
                         @foreach ($playlists as $playlist)
-                            <option value="{{ $playlist->id }}">{{ $playlist->name }}</option>
+                            <option value="{{!! $playlist->id !!}}">{{ $playlist->name }}</option>
                         @endforeach
                     </select>
                 <br><br>

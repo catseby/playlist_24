@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Song;
 use App\Models\Playlist;
-
+use Illuminate\Support\Facades\DB;
 
 
 class SongController extends Controller
@@ -45,9 +45,19 @@ class SongController extends Controller
         return redirect('/songs')->with('success', 'Song created successfully!');
     }
 
-    public function connect(Request $request)
+    public function add(Request $request, $id)
     {
+        //$request->validate([
+        //    'type' => 'required',
+        //]);
 
+        $song = Song::findOrFail($id);
+        $playlist = Playlist::findOrFail($request->get('type'));
+
+        DB::insert('insert into playlist_song (playlist_id, song_id) values (?, ?)', [$playlist->id ,$song->id]);
+
+        $playlists = Playlist::all();
+        return view('songs.show', ['song' => $song], compact('playlists'));
     }
 
     /**
