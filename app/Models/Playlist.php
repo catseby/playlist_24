@@ -12,4 +12,9 @@ class Playlist extends Model
         'name',
         'tag',
     ];
+
+    public function songs()
+    {
+        return $this->belongsToMany(Song::class);
+    }
 }

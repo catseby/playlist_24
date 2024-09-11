@@ -13,4 +13,9 @@ class Song extends Model
         'artist',
         'genre'
     ];
+
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class);
+    }
 }
