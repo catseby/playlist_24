@@ -54,12 +54,10 @@ class SongController extends Controller
         $playlist = Playlist::findOrFail($request->get('type'));
 
         $song->playlists()->attach($playlist);
-       // $playlist->locations->sync($locations);
 
         $playlists = Playlist::all();
         return view('songs.show', ['song' => $song], compact('playlists'));
-        //return redirect('/songs')->with('success', $playlist->name);
-
+        
     }
 
     /**

@@ -24,7 +24,7 @@
             </div>
             <div>
                 @foreach ($playlist->songs as $s)
-                    <p>{{$s->name}}</p>
+                    <p>{{$s->title}}</p>
                 @endforeach
             </div>
         </div>

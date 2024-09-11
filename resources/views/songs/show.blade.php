@@ -105,7 +105,7 @@
             </form>
             <div>
                 @foreach ($song->playlists as $pl)
-                    <p>{{$pl}}</p>
+                    <p>{{$pl->name}}</p>
                 @endforeach
             </div>
         </div>
