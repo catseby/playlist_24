@@ -91,15 +91,22 @@
             </div>
             <form action="{{ route('songs.add', $song->id) }}" method="POST">
                 @csrf
+                @method('PUT')
+
 
                 <label for="playlists">Add to a playlist:</label>
                     <select name="type" id="type">
                         @foreach ($playlists as $playlist)
-                            <option value="{{!! $playlist->id !!}}">{{ $playlist->name }}</option>
+                            <option value="{{ $playlist->id }}">{{ $playlist->name }}</option>
                         @endforeach
                     </select>
                 <br><br>
                 <input type="submit" value="Add">
             </form>
+            <div>
+                @foreach ($song->playlists as $pl)
+                    <p>{{$pl}}</p>
+                @endforeach
+            </div>
         </div>
 </x-app-layout>

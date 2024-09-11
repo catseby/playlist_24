@@ -7,7 +7,6 @@ use App\Models\Song;
 use App\Models\Playlist;
 use Illuminate\Support\Facades\DB;
 
-
 class SongController extends Controller
 {
     
@@ -47,17 +46,20 @@ class SongController extends Controller
 
     public function add(Request $request, $id)
     {
-        //$request->validate([
-        //    'type' => 'required',
-        //]);
+        $request->validate([
+            'type' => 'required',
+        ]);
 
         $song = Song::findOrFail($id);
         $playlist = Playlist::findOrFail($request->get('type'));
 
-        DB::insert('insert into playlist_song (playlist_id, song_id) values (?, ?)', [$playlist->id ,$song->id]);
+        $song->playlists()->attach($playlist);
+       // $playlist->locations->sync($locations);
 
         $playlists = Playlist::all();
         return view('songs.show', ['song' => $song], compact('playlists'));
+        //return redirect('/songs')->with('success', $playlist->name);
+
     }
 
     /**
@@ -66,7 +68,6 @@ class SongController extends Controller
     public function show(Song $song)
     {
         $playlists = Playlist::all();
-
         return view('songs.show', ['song' => $song], compact('playlists'));
     }
 
