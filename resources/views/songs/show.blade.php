@@ -35,22 +35,22 @@
 
        .widget-div button {
             color: crimson;
-            text-shadow: 0 0 black, 0 0 black, 1px 0 black, 0 -1px black;
+            text-shadow: 0 0 gray, 0 0 gray, 1px 0 gray, 0 -1px gray;
             transition: 0.3s;
         }
 
         .widget-div a {
             color: #FFBF00;
-            text-shadow: 0 0 black, 0 0 black, 1px 0 black, 0 -1px black;
+            text-shadow: 0 0 gray, 0 0 gray, 1px 0 gray, 0 -1px gray;
             transition: 0.3s;
         }
 
         .widget-div button:hover {
-            text-shadow: -1px 0 black, 0 1px black, 2px 0 black, 0 -2px black;
+            text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
         }
 
         .widget-div a:hover {
-            text-shadow: -1px 0 black, 0 1px black, 2px 0 black, 0 -2px black;
+            text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
         }
 
        .song-image {
@@ -59,6 +59,45 @@
        }
 
 
+       .bottom-div {
+            margin-top: 16px;
+            margin-left: 320px;
+            margin-right: auto;
+       }
+
+       .add-div {
+        font-size: 16px;
+        float: center; 
+       }
+
+
+       .dropdown, .dropdown:active, .dropdown:focus {
+        background-color: lightgray;
+        font-size: 16px;
+        width: auto;
+        height: 42px;
+        border: 1px outset darkgray;
+        outline: none;
+        box-shadow: none;
+        
+       }
+
+       .add-button {
+        transition: 0.3s;
+        background-color: lightgray;
+        border: 1px outset lightgray;
+        width: 64px;
+        height: 42px;
+        color: green;
+        text-shadow: 0 0 gray, 0 0 gray, 1px 0 gray, 0 -1px gray;
+       }
+
+       .add-button:hover {
+            background-color: #DFDFDF;
+            border: 1px outset darkgray;
+            text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+       }
+        
 
 
     </style>
@@ -93,26 +132,27 @@
 
         </div>
 
+        
         <div class="bottom-div">
+            <div class="add-div">
+                <form action="{{ route('songs.add', $song->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
-            <form action="{{ route('songs.add', $song->id) }}" method="POST">
-                @csrf
-                @method('PUT')
 
-
-                <label for="playlists">Add to a playlist:</label>
-                    <select name="type" id="type">
-                        @foreach ($playlists as $playlist)
-                            <option value="{{ $playlist->id }}">{{ $playlist->name }}</option>
-                        @endforeach
-                    </select>
-                <br><br>
-                <input type="submit" value="Add">
-            </form>
-            <div>
-                @foreach ($song->playlists as $pl)
-                    <p>{{$pl->name}}</p>
-                @endforeach
+                        <select name="type" id="type" class="dropdown">
+                            @foreach ($playlists as $playlist)
+                                <option value="{{ $playlist->id }}">{{ $playlist->name }}</option>
+                            @endforeach
+                        </select>
+                    <input type="submit" value="Add" class="add-button">
+                </form>
             </div>
-        </div>
+         </div>
+
+                <div>
+                    @foreach ($song->playlists as $pl)
+                        <p>{{$pl->name}}</p>
+                    @endforeach
+                </div>
 </x-app-layout>
