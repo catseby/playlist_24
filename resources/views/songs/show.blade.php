@@ -6,11 +6,10 @@
             height: 320px;
             margin-left: 320px;
             margin-right: 320px;
-
         }
 
        .image-div {
-        float: left
+        float: left;
        }
 
 
@@ -28,16 +27,38 @@
             display: inline;
             writing-mode: vertical-lr;
             text-orientation: upright;
-       }
+            position: relative;
+            bottom: 255px;
+            line-height: 2;
+            letter-spacing: -4px;   
+        }
 
-       .widget-div form, .widget-div a {
-            padding-bottom: 128px;
+       .widget-div button {
+            color: crimson;
+            text-shadow: 0 0 black, 0 0 black, 1px 0 black, 0 -1px black;
+            transition: 0.3s;
+        }
+
+        .widget-div a {
+            color: #FFBF00;
+            text-shadow: 0 0 black, 0 0 black, 1px 0 black, 0 -1px black;
+            transition: 0.3s;
+        }
+
+        .widget-div button:hover {
+            text-shadow: -1px 0 black, 0 1px black, 2px 0 black, 0 -2px black;
+        }
+
+        .widget-div a:hover {
+            text-shadow: -1px 0 black, 0 1px black, 2px 0 black, 0 -2px black;
         }
 
        .song-image {
             width: 320px;
             height: 320px;
        }
+
+
 
 
     </style>
@@ -60,6 +81,7 @@
                 <a href="{{ route('songs.edit', $song->id) }}" class="edit-button">
                     Edit
                 </a>
+                <br>
                 <form action="{{ route('songs.destroy', $song->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -70,6 +92,8 @@
             </div>
 
         </div>
+
+        <div class="bottom-div">
 
             <form action="{{ route('songs.add', $song->id) }}" method="POST">
                 @csrf
