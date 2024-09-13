@@ -40,8 +40,6 @@
             font-size: 20px
         }
 
-
-
     </style>    
 
     <div class="">
